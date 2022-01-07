@@ -18,6 +18,7 @@ Vagrant.configure(Vagrant_API_Version) do |config|
     cfg.vm.synced_folder ".", "/vagrant", disabled: true
     cfg.vm.network "public_network", ip: "192.168.1.11"
     cfg.vm.network "forwarded_port", guest: 22, host: 19211, auto_correct: false, id: "ssh"
+    cfg.vm.network "forwarded_port", guest: 80, host: 8080
     cfg.vm.provision "shell", path: "bash_ssh_conf_4_CentOS.sh"
   end
 
@@ -33,6 +34,7 @@ Vagrant.configure(Vagrant_API_Version) do |config|
     cfg.vm.synced_folder ".", "/vagrant", disabled: true
     cfg.vm.network "public_network", ip: "192.168.1.12"
     cfg.vm.network "forwarded_port", guest: 22, host: 19212, auto_correct: false, id: "ssh"
+    cfg.vm.network "forwarded_port", guest: 80, host: 8081
     cfg.vm.provision "shell", path: "bash_ssh_conf_4_CentOS.sh"
   end
 

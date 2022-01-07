@@ -1,0 +1,13 @@
+---
+- hosts: nginx
+  remote_user: root
+  tasks:
+    - name: install epel-release
+      yum: name=epel-release state=latest
+    - nmae: install nginx web server
+      yum: name=nginx state=present
+    - name: Upload default index.html for web server
+      copy: src=index.html  dest=/usr/share/nginx/html/ mode=0644
+    - name: Start nginx web server
+      service: name=nginx state=restart
+      
