@@ -24,7 +24,7 @@
 
 - name: Setup for nfs clients
   gather_facts: no
-  hosts: CentOS
+  hosts: CentOS:Ubuntu
 
   tasks:
     - name: make nfs_client directory

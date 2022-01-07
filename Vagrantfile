@@ -38,6 +38,36 @@ Vagrant.configure(Vagrant_API_Version) do |config|
     cfg.vm.provision "shell", path: "bash_ssh_conf_4_CentOS.sh"
   end
 
+  # Ansible-Node03    
+  config.vm.define:"ansible-node03" do |cfg|
+    cfg.vm.box = "ubuntu/trusty64"
+    cfg.vm.provider:virtualbox do |vb|
+      vb.name = "Ansible-Node03(Udemy-Bloter)"
+      vb.customize ["modifyvm", :id, "--cpus",1]
+      vb.customize ["modifyvm", :id, "--memory",512]
+    end
+    cfg.vm.host_name = "ansible-node03"
+    cfg.vm.synced_folder ".", "/vagrant", disabled: true
+    cfg.vm.network "public_network", ip: "192.168.1.13"
+    cfg.vm.network "forwarded_port", guest: 22, host: 19213, auto_correct: false, id: "ssh"
+    cfg.vm.network "forwarded_port", guest: 80, host: 8083
+  end
+
+  # Ansible-Node04    
+  config.vm.define:"ansible-node04" do |cfg|
+    cfg.vm.box = "ubuntu/trusty64"
+    cfg.vm.provider:virtualbox do |vb|
+      vb.name = "Ansible-Node04(Udemy-Bloter)"
+      vb.customize ["modifyvm", :id, "--cpus",1]
+      vb.customize ["modifyvm", :id, "--memory",512]
+    end
+    cfg.vm.host_name = "ansible-node04"
+    cfg.vm.synced_folder ".", "/vagrant", disabled: true
+    cfg.vm.network "public_network", ip: "192.168.1.14"
+    cfg.vm.network "forwarded_port", guest: 22, host: 19214, auto_correct: false, id: "ssh"
+    cfg.vm.network "forwarded_port", guest: 80, host: 8084
+  end
+
   # Ansible Server
   config.vm.define:"ansible-server" do |cfg|
     cfg.vm.box = "centos/7"
